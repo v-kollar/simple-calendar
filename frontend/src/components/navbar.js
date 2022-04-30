@@ -10,8 +10,15 @@ import Day from "./day";
 import Week from "./week";
 import Month from "./month";
 
-function Navbar() {
+const Navbar = ({
+  scheduledEvents,
+  currentDate,
+  setDate,
+  commitChanges,
+  AppointmentStyle,
+}) => {
   const [active, setActive] = useState(false);
+  //Array of routes with important properties for components
 
   return (
     <React.Fragment>
@@ -56,19 +63,110 @@ function Navbar() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/day" element={<Day />} />
-        <Route path="/week" element={<Week />} />
-        <Route path="/month" element={<Month />} />
+        <Route
+          path="/day"
+          element={
+            <Day
+              scheduledEvents={scheduledEvents}
+              currentDate={currentDate}
+              setDate={setDate}
+              commitChanges={commitChanges}
+              AppointmentStyle={AppointmentStyle}
+            />
+          }
+        />
+        <Route
+          path="/week"
+          element={
+            <Week
+              scheduledEvents={scheduledEvents}
+              currentDate={currentDate}
+              setDate={setDate}
+              commitChanges={commitChanges}
+              AppointmentStyle={AppointmentStyle}
+            />
+          }
+        />
+        <Route
+          path="/month"
+          element={
+            <Month
+              scheduledEvents={scheduledEvents}
+              currentDate={currentDate}
+              setDate={setDate}
+              commitChanges={commitChanges}
+              AppointmentStyle={AppointmentStyle}
+            />
+          }
+        />
       </Routes>
     </React.Fragment>
   );
-}
+};
 
 /*
-    return <div className={`${toggled ? 'toggled-class' : 'untoggled-class'}`}>Hello</div>
-    const handler = () => setClearIcon(true);
-    return clearIcon ? <ClearIcon /> : <MenuIcon />;
-    {`${clearIcon ? MenuIcon : CloseIcon}`}
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/day" element={<Day />} />
+        <Route path="/week" element={<Week />} />
+        <Route path="/month" element={<Month />} />
+
+        const routes = [
+        {
+          key: "home",
+          path: "/",
+          element: Home,
+        },
+        {
+          key: "day",
+          path: "/day",
+          element: Day,
+          scheduledEvents: { scheduledEvents },
+          currentDate: { currentDate },
+          setDate: { setDate },
+          commitChanges: { commitChanges },
+          AppointmentStyle: { AppointmentStyle },
+        },
+        {
+          key: "week",
+          path: "/week",
+          element: Week,
+          scheduledEvents: { scheduledEvents },
+          currentDate: { currentDate },
+          setDate: { setDate },
+          commitChanges: { commitChanges },
+          AppointmentStyle: { AppointmentStyle },
+        },
+        {
+          key: "month",
+          path: "/month",
+          element: Month,
+          scheduledEvents: { scheduledEvents },
+          currentDate: { currentDate },
+          setDate: { setDate },
+          commitChanges: { commitChanges },
+          AppointmentStyle: { AppointmentStyle },
+        },
+      ];
+
+
+        {routes.map(({ key, path, element: E }) => (
+          <Route
+            key={key}
+            path={path}
+            render={(props) => (
+              <E
+                {...props}
+                scheduledEvents={scheduledEvents}
+                currentDate={currentDate}
+                setDate={setDate}
+                commitChanges={commitChanges}
+                AppointmentStyle={AppointmentStyle}
+              />
+            )}
+          />
+        ))}
+
 */
 
 export default Navbar;
