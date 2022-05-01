@@ -10,13 +10,7 @@ import Day from "./day";
 import Week from "./week";
 import Month from "./month";
 
-const Navbar = ({
-  scheduledEvents,
-  currentDate,
-  setDate,
-  commitChanges,
-  AppointmentStyle,
-}) => {
+const Navbar = ({ scheduledEvents, currentDate, commitChanges }) => {
   const [active, setActive] = useState(false);
   //Array of routes with important properties for components
 
@@ -69,9 +63,7 @@ const Navbar = ({
             <Day
               scheduledEvents={scheduledEvents}
               currentDate={currentDate}
-              setDate={setDate}
               commitChanges={commitChanges}
-              AppointmentStyle={AppointmentStyle}
             />
           }
         />
@@ -81,9 +73,7 @@ const Navbar = ({
             <Week
               scheduledEvents={scheduledEvents}
               currentDate={currentDate}
-              setDate={setDate}
               commitChanges={commitChanges}
-              AppointmentStyle={AppointmentStyle}
             />
           }
         />
@@ -93,9 +83,7 @@ const Navbar = ({
             <Month
               scheduledEvents={scheduledEvents}
               currentDate={currentDate}
-              setDate={setDate}
               commitChanges={commitChanges}
-              AppointmentStyle={AppointmentStyle}
             />
           }
         />

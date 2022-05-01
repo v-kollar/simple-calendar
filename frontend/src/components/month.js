@@ -19,20 +19,11 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 //Monthview component
-const Month = ({
-  scheduledEvents,
-  currentDate,
-  setDate,
-  commitChanges,
-  AppointmentStyle,
-}) => {
+const Month = ({ scheduledEvents, currentDate, commitChanges }) => {
   return (
     <Paper>
       <Scheduler data={scheduledEvents}>
-        <ViewState
-          onCurrentDateChange={setDate}
-          defaultCurrentDate={currentDate}
-        />
+        <ViewState defaultCurrentDate={currentDate} />
         <EditingState onCommitChanges={commitChanges} />
         <IntegratedEditing />
         <MonthView />
@@ -40,7 +31,7 @@ const Month = ({
         <Toolbar />
         <DateNavigator />
         <TodayButton />
-        <Appointments appointmentComponent={AppointmentStyle} />
+        <Appointments />
         <AppointmentTooltip showOpenButton showDeleteButton />
         <AppointmentForm />
         <DragDropProvider />

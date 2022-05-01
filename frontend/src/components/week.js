@@ -19,20 +19,11 @@ import {
 } from "@devexpress/dx-react-scheduler-material-ui";
 
 //Weekview component
-const Week = ({
-  scheduledEvents,
-  currentDate,
-  setDate,
-  commitChanges,
-  AppointmentStyle,
-}) => {
+const Week = ({ scheduledEvents, currentDate, commitChanges }) => {
   return (
     <Paper>
       <Scheduler data={scheduledEvents}>
-        <ViewState
-          onCurrentDateChange={setDate}
-          defaultCurrentDate={currentDate}
-        />
+        <ViewState defaultCurrentDate={currentDate} />
         <EditingState onCommitChanges={commitChanges} />
         <IntegratedEditing />
         <WeekView />
@@ -40,7 +31,7 @@ const Week = ({
         <Toolbar />
         <DateNavigator />
         <TodayButton />
-        <Appointments appointmentComponent={AppointmentStyle} />
+        <Appointments />
         <AppointmentTooltip showOpenButton showDeleteButton />
         <AppointmentForm />
         <DragDropProvider />
