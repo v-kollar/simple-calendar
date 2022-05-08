@@ -17,7 +17,7 @@ class App extends Component {
     currentDate: new Date(),
 
     //Connstring with backend
-    connString: "xXx",
+    connString: "http://localhost:5000",
   };
 
   constructor(props) {
@@ -26,7 +26,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("IHAAAA");
+    axios.get(`${this.state.connString}/get`).then((res) => {
+      const calTasks = res.data;
+      this.setState({ scheduledEvents: calTasks });
+    });
   }
 
   commitChanges({ added, changed, deleted }) {
@@ -35,16 +38,38 @@ class App extends Component {
 
       if (added) {
         //added = object (title, startDate, endDate)
+        console.log(added);
+        axios.post(`${this.state.connString}/add`, added).then((res) => {
+          const calTasks = res.data;
+          this.setState({ scheduledEvents: calTasks });
+        });
         console.log("ADDED");
       }
 
       if (changed) {
-        //changed = {Id : object (startDate, endDate)}
+        //changed = { Id: object(startDate, endDate) };
+        axios
+          .put(
+            `${this.state.connString}/update/${Object.keys(changed)[0]}`,
+            changed[Object.keys(changed)[0]]
+          )
+          .then((res) => {
+            const calTasks = res.data;
+            this.setState({ scheduledEvents: calTasks });
+          });
+        console.log(changed[Object.keys(changed)[0]]);
+
         console.log("CHANGED");
       }
 
       if (deleted !== undefined) {
         //deleted = Id
+        axios
+          .delete(`${this.state.connString}/delete/${deleted}`)
+          .then((res) => {
+            const calTasks = res.data;
+            this.setState({ scheduledEvents: calTasks });
+          });
         console.log("DELETED");
       }
 
